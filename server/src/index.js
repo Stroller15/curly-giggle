@@ -9,7 +9,7 @@ connectDB()
 .then(() => {
     // console.log(res)
     app.listen(process.env.PORT || 8000 , () => {
-        console.log(`server running or port: ${process.env.PORT}`)
+        console.log(`🔴 server running or port: ${process.env.PORT}`)
     })
 })
 .catch((err) => {
