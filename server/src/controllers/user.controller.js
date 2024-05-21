@@ -23,7 +23,7 @@ const registerUser = asyncHandler(async (req, res) => {
   // check if user already exist
   const existedUser = await User.findOne({
     $or: [{ username }, { email }],
-  });
+  }); 
 
   if (existedUser) {
     throw new ApiError(409, "User with email and username exist");
@@ -50,12 +50,14 @@ const registerUser = asyncHandler(async (req, res) => {
 
   const user = await User.create({
     fullName,
-    avatar: avatar.url,
+    avatar: avatar?.url,
     coverImage: coverImage?.url || "",
     email,
     password,
     username: username.toLowerCase(),
   });
+
+  console.log(user)
 
   const createdUser = await User.findById(user._id).select(
     "-password -refreshToken"
